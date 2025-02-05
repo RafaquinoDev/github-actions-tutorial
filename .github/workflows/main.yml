@@ -9,12 +9,17 @@ on:
 jobs:
   ejemplo:
     runs-on: ubuntu-latest
-    env:
-      PLATAFORMA: "AWS"
-      REGION: "us-east-1"
     steps:
-      - name: Mostrar Información del Evento
-        run: |
-          echo "Repositorio: ${{ github.repository }}"
-          echo "Actor: ${{ github.actor }}"
-          echo "Evento: ${{ github.event_name }}"
+      - name: Clonar el Repositorio 
+        uses: actions/checkout@v3
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Instalar Dependencias
+        run: npm install
+
+      - name: Ejecutar Pruebas
+        run: npm test
