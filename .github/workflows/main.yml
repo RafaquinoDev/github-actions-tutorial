@@ -13,7 +13,6 @@ jobs:
       PLATAFORMA: "AWS"
       REGION: "us-east-1"
     steps:
-      - name: Mostrar Variables
-        run: |
-          echo "Plataforma: $PLATAFORMA"
-          echo "Region: $REGION"
+      - name: Mostrar plataforma solo si es AWS
+        if: env.PLATAFORMA == 'AWS'
+        run: echo "La plataforma es AWS"
